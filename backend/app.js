@@ -1,5 +1,17 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const mongoose = require('mongoose');
+
+const itemRoute = require('./routes/item');
+
+mongoose.connect('mongodb+srv://api:8bpBvgJI3MO5toYx@cluster0-wfjg2.gcp.mongodb.net/test?retryWrites=true&w=majority').then(() => 
+    {
+        console.log('Successfully connected to MondoDB Atlas!');
+    })
+    .catch((error) => {
+        console.log('Unable to connect to MongoDB Atlas!');
+        console.error(error);
+    });
 
 const app = express();
 
@@ -12,33 +24,6 @@ app.use((req, res, next) => {
 
 app.use(bodyParser.json())
 
-app.post('/api/stuff', (req, res, next) => {
-    console.log(req.body);
-    res.status(201).json({
-        message: 'Post Successful!'
-    });
-});
-
-app.use('/api/stuff', (req, res, next) => {
-    const stuff = [
-        {
-            _id: 'string1',
-            title: 'string1',
-            description: 'string1',
-            imageUrl: '',
-            price: 3000,
-            userId: '001',
-        },
-        {
-            _id: 'string2',
-            title: 'string2',
-            description: 'string2',
-            imageUrl: '',
-            price: 4000,
-            userId: '002'
-        }
-    ];
-    res.status(200).json(stuff);
-});
+app.use('/api/stuff', itemRoute);
 
 module.exports = app;
