@@ -1,13 +1,14 @@
 const express = require('express');
 const router = express.Router();
+const multer = require('../middleware/multer-config');
 
 const itemCtrl = require('../controller/item');
 
 const auth = require('../middleware/auth');
 
-router.post('/', auth, itemCtrl.createItem);
+router.post('/', auth, multer, itemCtrl.createItem);
  
-router.put('/:id', auth, itemCtrl.updateItem);
+router.put('/:id', auth, multer, itemCtrl.updateItem);
 
 router.delete('/:id', auth, itemCtrl.deleteItem);
 
