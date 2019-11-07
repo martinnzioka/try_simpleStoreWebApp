@@ -3,6 +3,7 @@ const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 
 const itemRoute = require('./routes/item');
+const userRoute = require('./routes/user');
 
 mongoose.connect('mongodb+srv://api:8bpBvgJI3MO5toYx@cluster0-wfjg2.gcp.mongodb.net/test?retryWrites=true&w=majority').then(() => 
     {
@@ -25,5 +26,6 @@ app.use((req, res, next) => {
 app.use(bodyParser.json())
 
 app.use('/api/stuff', itemRoute);
+app.use('/api/auth', userRoute);
 
 module.exports = app;
