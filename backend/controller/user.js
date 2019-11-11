@@ -4,7 +4,7 @@ const bcrypt = require('bcrypt');
 
 
 exports.signup = (req, res, next) => {
-
+    // use your own bcrypt salt
     bcrypt.hash(req.body.password, 10).then(
 
         (hash) => {

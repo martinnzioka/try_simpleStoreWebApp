@@ -6,7 +6,7 @@ const path = require('path');
 const itemRoute = require('./routes/item');
 const userRoute = require('./routes/user');
 
-mongoose.connect('mongodb+srv://api:8bpBvgJI3MO5toYx@cluster0-wfjg2.gcp.mongodb.net/test?retryWrites=true&w=majority').then(() => 
+mongoose.connect('mongodb+srv://<user>:<password>@cluster0-wfjg2.gcp.mongodb.net/test?retryWrites=true&w=majority').then(() => 
     {
         console.log('Successfully connected to MondoDB Atlas!');
     })
